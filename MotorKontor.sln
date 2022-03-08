@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32002.261
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MotorKontor", "MotorKontor\MotorKontor.csproj", "{F25E7498-3D71-4830-84B4-16F8FC094C11}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "XUnit", "XUnit", "{FD6D1000-CEB6-4BA3-BFB0-B7D6FCE82EF7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "unittest", "unittest\unittest.csproj", "{89FA8D26-43D9-4DF4-9DFD-29EDCC228866}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F25E7498-3D71-4830-84B4-16F8FC094C11}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F25E7498-3D71-4830-84B4-16F8FC094C11}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F25E7498-3D71-4830-84B4-16F8FC094C11}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F25E7498-3D71-4830-84B4-16F8FC094C11}.Release|Any CPU.Build.0 = Release|Any CPU
+		{89FA8D26-43D9-4DF4-9DFD-29EDCC228866}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{89FA8D26-43D9-4DF4-9DFD-29EDCC228866}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{89FA8D26-43D9-4DF4-9DFD-29EDCC228866}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{89FA8D26-43D9-4DF4-9DFD-29EDCC228866}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{89FA8D26-43D9-4DF4-9DFD-29EDCC228866} = {FD6D1000-CEB6-4BA3-BFB0-B7D6FCE82EF7}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D0662248-D9DF-453F-A725-05B1252DF80E}
+	EndGlobalSection
+EndGlobal
