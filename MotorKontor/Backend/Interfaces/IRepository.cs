@@ -14,6 +14,12 @@ namespace MotorKontor.Backend.Interfaces
 
         //  GET METHODS 
         Task<Customer> GetCustomerAsync(int id);
+        Task<List<Customer>> GetLatestCustomersListAsync();
+
         Task<Vehicle> GetVehicleAsync(int vehicleid);
+        Task<List<Vehicle>> GetVehicleListAsync();
+
+        Task<Registration> GetRegistrationAsync(int id);
+        Task<List<Registration>> GetLatestRegistrationsListAsync();
     }
 }

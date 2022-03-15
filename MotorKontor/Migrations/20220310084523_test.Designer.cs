@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MotorKontor.Backend.Models;
 
 namespace MotorKontor.Migrations
 {
     [DbContext(typeof(MyContext))]
-    partial class MyContextModelSnapshot : ModelSnapshot
+    [Migration("20220310084523_test")]
+    partial class test
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -71,17 +73,8 @@ namespace MotorKontor.Migrations
                     b.Property<int>("RegistrationID")
                         .HasColumnType("int");
 
-                    b.Property<string>("CustomerFullName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("CustomerID")
+                    b.Property<int>("CustomerID")
                         .HasColumnType("int");
-
-                    b.Property<DateTime>("LeasedCreated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("LeasedEnding")
-                        .HasColumnType("datetime2");
 
                     b.Property<int>("VehicleID")
                         .HasColumnType("int");
@@ -89,8 +82,6 @@ namespace MotorKontor.Migrations
                     b.HasKey("RegistrationID");
 
                     b.HasIndex("CustomerID");
-
-                    b.HasIndex("VehicleID");
 
                     b.ToTable("Registration");
                 });
@@ -106,10 +97,15 @@ namespace MotorKontor.Migrations
                     b.Property<DateTime>("LeasedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<int>("RegistrationID")
+                        .HasColumnType("int");
+
                     b.Property<string>("VehicleModel")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("VehicleID");
+
+                    b.HasIndex("RegistrationID");
 
                     b.ToTable("Vehicle");
                 });
@@ -118,11 +114,16 @@ namespace MotorKontor.Migrations
                 {
                     b.HasOne("MotorKontor.Backend.Models.Customer", null)
                         .WithMany("UserVehicleRegistration")
-                        .HasForeignKey("CustomerID");
+                        .HasForeignKey("CustomerID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
 
-                    b.HasOne("MotorKontor.Backend.Models.Vehicle", "VehicleRegistrated")
+            modelBuilder.Entity("MotorKontor.Backend.Models.Vehicle", b =>
+                {
+                    b.HasOne("MotorKontor.Backend.Models.Registration", "VehicleRegistration")
                         .WithMany()
-                        .HasForeignKey("VehicleID")
+                        .HasForeignKey("RegistrationID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

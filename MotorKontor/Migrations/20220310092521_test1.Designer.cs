@@ -3,15 +3,17 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using MotorKontor.Backend.Models;
 
 namespace MotorKontor.Migrations
 {
     [DbContext(typeof(MyContext))]
-    partial class MyContextModelSnapshot : ModelSnapshot
+    [Migration("20220310092521_test1")]
+    partial class test1
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -71,16 +73,10 @@ namespace MotorKontor.Migrations
                     b.Property<int>("RegistrationID")
                         .HasColumnType("int");
 
-                    b.Property<string>("CustomerFullName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<int?>("CustomerID")
+                    b.Property<int>("CustomerID")
                         .HasColumnType("int");
 
-                    b.Property<DateTime>("LeasedCreated")
-                        .HasColumnType("datetime2");
-
-                    b.Property<DateTime>("LeasedEnding")
+                    b.Property<DateTime>("Leased")
                         .HasColumnType("datetime2");
 
                     b.Property<int>("VehicleID")
@@ -89,8 +85,6 @@ namespace MotorKontor.Migrations
                     b.HasKey("RegistrationID");
 
                     b.HasIndex("CustomerID");
-
-                    b.HasIndex("VehicleID");
 
                     b.ToTable("Registration");
                 });
@@ -118,11 +112,7 @@ namespace MotorKontor.Migrations
                 {
                     b.HasOne("MotorKontor.Backend.Models.Customer", null)
                         .WithMany("UserVehicleRegistration")
-                        .HasForeignKey("CustomerID");
-
-                    b.HasOne("MotorKontor.Backend.Models.Vehicle", "VehicleRegistrated")
-                        .WithMany()
-                        .HasForeignKey("VehicleID")
+                        .HasForeignKey("CustomerID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

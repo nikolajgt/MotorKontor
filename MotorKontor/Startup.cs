@@ -36,12 +36,14 @@ namespace MotorKontor
 
 
             services.AddDbContext<MyContext>(opt => opt
-                .EnableSensitiveDataLogging()
                 .UseLazyLoadingProxies()
                 .UseSqlServer(Configuration.GetConnectionString("SqlServer")), ServiceLifetime.Transient);
 
+            // DEPENDENCY INJECTIONS
             services.AddScoped<IRepository, Repository>();
             services.AddScoped<IService, Service>();
+
+            services.AddSingleton<Customer>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

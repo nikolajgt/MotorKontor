@@ -1,5 +1,22 @@
 ﻿@page "/"
-@inject MotorKontor.Backend.Models.Customer customer
+@using MotorKontor.Backend.Models
+@using MotorKontor.Backend.Interfaces
+@inject IService service
+
+
+@code {
+    public Index() { } //Emtpty initilizer
+
+    private List<Customer> NewCustomers = new List<Customer>();
+    private List<Registration> NewRegistrations = new List<Registration>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        NewCustomers = await service.GetLatestCustomersListAsync();
+        NewRegistrations = await service.GetLatestRegistrationsListAsync();
+    }
+}
+ 
 
 <div class="container-fluid">
     <div class="row">
@@ -79,11 +96,19 @@
                     New registrations
                 </div>
                 <div class="card-body">
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item list-group-item-action">Cras justo odio</li>
-                        <li class="list-group-item list-group-item-action">Dapibus ac facilisis in</li>
-                        <li class="list-group-item list-group-item-action">Vestibulum at eros</li>
-                    </ul>
+                    @if (!NewRegistrations.Any())
+                    {
+                        <p><em>Loading...</em></p>
+                    }
+                    else
+                    {
+                        @foreach (Registration c in NewRegistrations)
+                        {
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item list-group-item-action">@c.LeasedCreated.ToString() @c.RegistrationID</li>
+                            </ul>
+                        }
+                    }
                 </div>
             </div>
         </div>
@@ -93,17 +118,22 @@
                     New customers
                 </div>
                 <div class="card-body">
-                    <ul class="list-group list-group-flush">
-                        <li class="list-group-item list-group-item-action">Cras justo odio</li>
-                        <li class="list-group-item list-group-item-action">Dapibus ac facilisis in</li>
-                        <li class="list-group-item list-group-item-action">Vestibulum at eros</li>
-                    </ul>
+                    @if (!NewCustomers.Any())
+                    {
+                        <p><em>Loading...</em></p>
+                    }
+                    else
+                    {
+                        @foreach (Customer c in NewCustomers)
+                        {
+                            <ul class="list-group list-group-flush">
+                                <li class="list-group-item list-group-item-action">@c.Firstname @c.Lastname</li>
+                            </ul>
+                        }
+                    }
                 </div>
             </div>
         </div>
     </div>
 </div>
 
-@code {
-    private List<customer> NewCustomers { get; set; }
-}

@@ -12,7 +12,7 @@ namespace MotorKontor.Backend.Models
         public DbSet<Customer> Customer { get; set; }
         public DbSet<Vehicle> Vehicle { get; set; }
         public DbSet<Registration> Registration { get; set; }
-        public DbSet<Address> Address { get; set; }
+        //public DbSet<Address> Address { get; set; }
 
         public MyContext(DbContextOptions options) : base(options) { }
     }

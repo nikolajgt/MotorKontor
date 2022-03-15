@@ -39,9 +39,29 @@ namespace MotorKontor.Backend.Services
             return await _repository.GetCustomerAsync(id);
         }
 
+        public async Task<List<Customer>> GetLatestCustomersListAsync()
+        {
+            return await _repository.GetLatestCustomersListAsync();
+        }
+
         public async Task<Vehicle> GetVehicleAsync(int vehicleid)
         {
             return await _repository.GetVehicleAsync(vehicleid);
+        }
+        
+        public async Task<List<Vehicle>> GetVehicleListAsync()
+        {
+            return await _repository.GetVehicleListAsync();
+        }
+
+        public async Task<Registration> GetRegistrationAsync(int id)
+        {
+            return await _repository.GetRegistrationAsync(id);
+        }
+
+        public async Task<List<Registration>> GetLatestRegistrationsListAsync()
+        {
+            return await _repository.GetLatestRegistrationsListAsync();
         }
 
         //  UPDATE METHODS 

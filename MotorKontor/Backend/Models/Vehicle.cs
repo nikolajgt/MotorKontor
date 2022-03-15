@@ -12,13 +12,11 @@ namespace MotorKontor.Backend.Models
         public Vehicle() { }
 
         [Key]
+        [DatabaseGenerated(DatabaseGeneratedOption.None)]
         public int VehicleID { get; set; }
         public string VehicleModel { get; set; }
         public virtual Fuel Fuel { get; set; }
-
-        public int VehicleRegistrationID { get; set; }
-        [ForeignKey("VehicleRegistrationID")]
-        public virtual Registration VehicleRegistration { get; set; }
+        public DateTime LeasedDate { get; set; }
 
         public Vehicle(string model, Fuel fuel)
         {
